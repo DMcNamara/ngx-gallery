@@ -54,12 +54,19 @@ export interface INgxGalleryOptions {
     previewZoomMax?: number;
     previewZoomMin?: number;
     arrowPrevIcon?: string;
+    arrowPrevIconText?: string;
     arrowNextIcon?: string;
+    arrowNextIconText?: string;
     closeIcon?: string;
+    closeIconText?: string;
     fullscreenIcon?: string;
+    fullscreenIconText?: string;
     spinnerIcon?: string;
+    spinnerIconText?: string;
     zoomInIcon?: string;
+    zoomInIconText?: string;
     zoomOutIcon?: string;
+    zoomOutIconText?: string;
 }
 
 export class NgxGalleryOptions implements INgxGalleryOptions {
@@ -113,12 +120,19 @@ export class NgxGalleryOptions implements INgxGalleryOptions {
     previewZoomMax?: number;
     previewZoomMin?: number;
     arrowPrevIcon?: string;
+    arrowPrevIconText?: string;
     arrowNextIcon?: string;
+    arrowNextIconText?: string;
     closeIcon?: string;
+    closeIconText?: string;
     fullscreenIcon?: string;
+    fullscreenIconText?: string;
     spinnerIcon?: string;
+    spinnerIconText?: string;
     zoomInIcon?: string;
+    zoomInIconText?: string;
     zoomOutIcon?: string;
+    zoomOutIconText?: string;
 
     constructor(obj: INgxGalleryOptions) {
 
@@ -146,7 +160,7 @@ export class NgxGalleryOptions implements INgxGalleryOptions {
         this.imageSize = use(obj.imageSize, NgxGalleryImageSize.Cover);
         this.imageAutoPlay = use(obj.imageAutoPlay, false);
         this.imageAutoPlayInterval = use(obj.imageAutoPlayInterval, 2000);
-        this.imageAutoPlayPauseOnHover= use(obj.imageAutoPlayPauseOnHover, false);
+        this.imageAutoPlayPauseOnHover = use(obj.imageAutoPlayPauseOnHover, false);
         this.imageInfinityMove = use(obj.imageInfinityMove, false);
 
         this.thumbnails = use(obj.thumbnails, true);
@@ -182,11 +196,18 @@ export class NgxGalleryOptions implements INgxGalleryOptions {
         this.previewZoomMin = use(obj.previewZoomMin, 0.5);
 
         this.arrowPrevIcon = use(obj.arrowPrevIcon, 'fa fa-arrow-circle-left');
+        this.arrowPrevIconText = use(obj.arrowPrevIconText, '');
         this.arrowNextIcon = use(obj.arrowNextIcon, 'fa fa-arrow-circle-right');
+        this.arrowNextIconText = use(obj.arrowNextIconText, '');
         this.closeIcon = use(obj.closeIcon, 'fa fa-times-circle');
+        this.closeIconText = use(obj.closeIconText, '');
         this.fullscreenIcon = use(obj.fullscreenIcon, 'fa fa-arrows-alt');
+        this.fullscreenIconText = use(obj.fullscreenIconText, '');
         this.spinnerIcon = use(obj.spinnerIcon, 'fa fa-spinner fa-pulse fa-3x fa-fw');
+        this.spinnerIconText = use(obj.spinnerIconText, '');
         this.zoomInIcon = use(obj.zoomInIcon, 'fa fa-search-plus');
+        this.zoomInIconText = use(obj.zoomInIconText, '');
         this.zoomOutIcon = use(obj.zoomOutIcon, 'fa fa-search-minus');
+        this.zoomOutIconText = use(obj.zoomOutIconText, '');
     }
 }
