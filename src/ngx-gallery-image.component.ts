@@ -11,7 +11,7 @@ import { NgxGalleryAnimation } from './ngx-gallery-animation.model';
         <div class="ngx-gallery-image-wrapper ngx-gallery-animation-{{animation}} ngx-gallery-image-size-{{size}}">
             <div class="ngx-gallery-image" *ngFor="let image of getImages();" [ngClass]="{ 'ngx-gallery-active': selectedIndex == image.index, 'ngx-gallery-inactive-left': selectedIndex > image.index, 'ngx-gallery-inactive-right': selectedIndex < image.index, 'ngx-gallery-clickable': clickable }" [style.background-image]="getSafeUrl(image.src)" (click)="handleClick($event, image.index)"></div>
         </div>
-        <ngx-gallery-arrows class="ngx-gallery-image-size-{{size}}" *ngIf="arrows" (onPrevClick)="showPrev()" (onNextClick)="showNext()" [prevDisabled]="!canShowPrev()" [nextDisabled]="!canShowNext()" [arrowPrevIcon]="arrowPrevIcon" [arrowNextIcon]="arrowNextIcon"></ngx-gallery-arrows>
+        <ngx-gallery-arrows class="ngx-gallery-image-size-{{size}}" *ngIf="arrows" (onPrevClick)="showPrev()" (onNextClick)="showNext()" [prevDisabled]="!canShowPrev()" [nextDisabled]="!canShowNext()" [arrowPrevIcon]="arrowPrevIcon" [arrowPrevIconText]="arrowPrevIconText" [arrowNextIcon]="arrowNextIcon" [arrowNextIconText]="arrowNextIconText"></ngx-gallery-arrows>
     `,
     styleUrls: ['./ngx-gallery-image.component.scss']
 })
@@ -25,7 +25,9 @@ export class NgxGalleryImageComponent implements OnInit, OnChanges {
     @Input() animation: string;
     @Input() size: string;
     @Input() arrowPrevIcon: string;
+    @Input() arrowPrevIconText: string;
     @Input() arrowNextIcon: string;
+    @Input() arrowNextIconText: string;
     @Input() autoPlay: boolean;
     @Input() autoPlayInterval: number;
     @Input() autoPlayPauseOnHover: boolean;
@@ -89,7 +91,7 @@ export class NgxGalleryImageComponent implements OnInit, OnChanges {
 
             if (prevIndex === -1 && this.infinityMove) {
                 indexes.push(this.images.length - 1)
-            } else if(prevIndex >= 0) {
+            } else if (prevIndex >= 0) {
                 indexes.push(prevIndex);
             }
 

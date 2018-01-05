@@ -114,15 +114,22 @@ You can read more about this issue [here](https://github.com/angular/material2/i
 - `previewZoom` | Type: `boolean` | Default value: `false` - enables or disables zoom in and zoom out
 - `previewZoomStep` | Type: `number` | Default value: `0.1` - step for zoom change
 - `previewZoomMax` | Type: `number` | Default value: `2` - max value for zoom
-- `previewZoomMin` | Type: `number` | Default value: `0.5` - min value for zoom 
+- `previewZoomMin` | Type: `number` | Default value: `0.5` - min value for zoom
 
 - `arrowPrevIcon` | Type: `string` | Default value: `'fa fa-arrow-circle-left'` - icon for prev arrow
+- `arrowPrevIconText` | Type: `string` | Default value: `''` - text inside icon element, for icon sets like Material
 - `arrowNextIcon` | Type: `string` | Default value: `'fa fa-arrow-circle-right'` - icon for next arrow
+- `arrowNextIconText` | Type: `string` | Default value: `''` - text inside icon element, for icon sets like Material
 - `closeIcon` | Type: `string` | Default value: `'fa fa-times-circle'` - icon for close button
+- `closeIconText` | Type: `string` | Default value: `''` - text inside icon element, for icon sets like Material
 - `fullscreenIcon` | Type: `string` | Default value: `'fa fa-arrows-alt'` - icon for fullscreen button
+- `fullscreenIconText` | Type: `string` | Default value: `''` - text inside icon element, for icon sets like Material
 - `spinnerIcon` | Type: `string` | Default value: `'fa fa-spinner fa-pulse fa-3x fa-fw'` - icon for spinner
+- `spinnerIconText` | Type: `string` | Default value: `''` - text inside icon element, for icon sets like Material
 - `zoomInIcon` | Type: `string` | Default value: `'fa fa-search-plus'` - icon for zoom in
+- `zoomInIconText` | Type: `string` | Default value: `''` - text inside icon element, for icon sets like Material
 - `zoomOutIcon` | Type: `string` | Default value: `'fa fa-search-minus'` - icon for zoom out
+- `zoomOutIconText` | Type: `string` | Default value: `''` - text inside icon element, for icon sets like Material
 
 # NgxGalleryImage
 - `small` | Type: `string | SafeResourceUrl` - url used in thumbnails
@@ -189,11 +196,11 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {    
+export class AppComponent implements OnInit {
     galleryOptions: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
 
-    ngOnInit(): void {     
+    ngOnInit(): void {
 
         this.galleryOptions = [
             {

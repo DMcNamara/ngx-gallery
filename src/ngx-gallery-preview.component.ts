@@ -6,13 +6,13 @@ import { NgxGalleryHelperService } from './ngx-gallery-helper.service';
 @Component({
     selector: 'ngx-gallery-preview',
     template: `
-        <ngx-gallery-arrows (onPrevClick)="showPrev()" (onNextClick)="showNext()" [prevDisabled]="!canShowPrev()" [nextDisabled]="!canShowNext()" [arrowPrevIcon]="arrowPrevIcon" [arrowNextIcon]="arrowNextIcon"></ngx-gallery-arrows>
+        <ngx-gallery-arrows (onPrevClick)="showPrev()" (onNextClick)="showNext()" [prevDisabled]="!canShowPrev()" [nextDisabled]="!canShowNext()" [arrowPrevIcon]="arrowPrevIcon" [arrowNextIcon]="arrowNextIcon" [arrowPrevIconText]="arrowPrevIconText" [arrowNextIconText]="arrowNextIconText"></ngx-gallery-arrows>
         <div class="ngx-gallery-preview-top">
             <div class="ngx-gallery-preview-icons">
-                <i class="ngx-gallery-icon {{zoomOutIcon}}" aria-hidden="true" (click)="zoomOut()" *ngIf="zoom" [class.ngx-gallery-icon-disabled]="!canZoomOut()"></i>
-                <i class="ngx-gallery-icon {{zoomInIcon}}" aria-hidden="true" (click)="zoomIn()" *ngIf="zoom" [class.ngx-gallery-icon-disabled]="!canZoomIn()"></i>
-                <i class="ngx-gallery-icon ngx-gallery-fullscreen {{fullscreenIcon}}" aria-hidden="true" *ngIf="fullscreen" (click)="manageFullscreen()"></i>
-                <i class="ngx-gallery-icon ngx-gallery-close {{closeIcon}}" aria-hidden="true" (click)="close()"></i>
+                <i class="ngx-gallery-icon {{zoomOutIcon}}" aria-hidden="true" (click)="zoomOut()" *ngIf="zoom" [class.ngx-gallery-icon-disabled]="!canZoomOut()">{{zoomOutIconText}}</i>
+                <i class="ngx-gallery-icon {{zoomInIcon}}" aria-hidden="true" (click)="zoomIn()" *ngIf="zoom" [class.ngx-gallery-icon-disabled]="!canZoomIn()">{{zoomInIconText}}</i>
+                <i class="ngx-gallery-icon ngx-gallery-fullscreen {{fullscreenIcon}}" aria-hidden="true" *ngIf="fullscreen" (click)="manageFullscreen()">{{fullscreenIconText}}</i>
+                <i class="ngx-gallery-icon ngx-gallery-close {{closeIcon}}" aria-hidden="true" (click)="close()">{{closeIconText}}</i>
             </div>
         </div>
         <div class="ngx-spinner-wrapper ngx-gallery-center" [class.ngx-gallery-active]="showSpinner">
@@ -48,10 +48,15 @@ export class NgxGalleryPreviewComponent implements OnChanges {
     @Input() closeOnEsc: boolean;
     @Input() keyboardNavigation: boolean;
     @Input() arrowPrevIcon: string;
+    @Input() arrowPrevIconText: string;
     @Input() arrowNextIcon: string;
+    @Input() arrowNextIconText: string;
     @Input() closeIcon: string;
+    @Input() closeIconText: string;
     @Input() fullscreenIcon: string;
+    @Input() fullscreenIconText: string;
     @Input() spinnerIcon: string;
+    @Input() spinnerIconText: string;
     @Input() autoPlay: boolean;
     @Input() autoPlayInterval: number;
     @Input() autoPlayPauseOnHover: boolean;
@@ -61,7 +66,9 @@ export class NgxGalleryPreviewComponent implements OnChanges {
     @Input() zoomMax: number;
     @Input() zoomMin: number;
     @Input() zoomInIcon: string;
+    @Input() zoomInIconText: string;
     @Input() zoomOutIcon: string;
+    @Input() zoomOutIconText: string;
 
     @Output() onOpen = new EventEmitter();
     @Output() onClose = new EventEmitter();
@@ -237,7 +244,7 @@ export class NgxGalleryPreviewComponent implements OnChanges {
                 this.zoomValue = this.zoomMin;
             }
 
-            if(this.zoomValue <= 1) {
+            if (this.zoomValue <= 1) {
                 this.resetPosition()
             }
         }
@@ -379,7 +386,7 @@ export class NgxGalleryPreviewComponent implements OnChanges {
             return false;
         }
 
-        if (typeof img.naturalWidth !== "undefined" && img.naturalWidth === 0) {
+        if (typeof img.naturalWidth !== 'undefined' && img.naturalWidth === 0) {
             return false;
         }
 
