@@ -13,7 +13,7 @@ import { NgxGalleryHelperService } from './ngx-gallery-helper.service';
                 <ngx-gallery-action *ngFor="let action of actions" [icon]="action.icon" [disabled]="action.disabled" [titleText]="action.titleText" (onClick)="action.onClick($event)"></ngx-gallery-action>
                 <ngx-gallery-action *ngIf="zoom" [icon]="zoomOutIcon" [disabled]="!canZoomOut()" (onClick)="zoomOut()"></ngx-gallery-action>
                 <ngx-gallery-action *ngIf="zoom" [icon]="zoomInIcon" [disabled]="!canZoomIn()" (onClick)="zoomIn()"></ngx-gallery-action>
-                <ngx-gallery-action *ngIf="fullscreen" [icon]="'ngx-gallery-fullscreen ' + fullscreenIcon" [titleText]="Fullscreen" (onClick)="manageFullscreen()"></ngx-gallery-action>
+                <ngx-gallery-action *ngIf="fullscreen" [icon]="'ngx-gallery-fullscreen ' + fullscreenIcon" (onClick)="manageFullscreen()"></ngx-gallery-action>
                 <ngx-gallery-action [icon]="'ngx-gallery-close ' + closeIcon" (onClick)="close()"></ngx-gallery-action>
             </div>
         </div>
@@ -68,6 +68,7 @@ export class NgxGalleryPreviewComponent implements OnChanges {
 
     @Output() onOpen = new EventEmitter();
     @Output() onClose = new EventEmitter();
+    @Output() onActiveChange = new EventEmitter<number>();
 
     @ViewChild('previewImage') previewImage: ElementRef;
 
@@ -337,9 +338,11 @@ export class NgxGalleryPreviewComponent implements OnChanges {
         }
     }
 
-    private show(first: boolean = false) {
+    private show(first = false) {
         this.loading = true;
         this.stopAutoPlay();
+
+        this.onActiveChange.emit(this.index);
 
         if (first) {
             this._show();

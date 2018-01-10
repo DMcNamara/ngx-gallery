@@ -161,6 +161,7 @@ You can read more about this issue [here](https://github.com/angular/material2/i
 - `imagesReady` - triggered when images length > 0
 - `previewOpen` - triggered on preview open
 - `previewClose` - triggered on preview close
+- `previewChange` - triggered on preview image change
 
 # Methods
 - `show(index: number): void` - shows image at index

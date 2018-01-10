@@ -171,6 +171,41 @@ describe('NgxGalleryPreviewComponent', () => {
         }, 1000)
     });
 
+    it('should trigger change event on show next', () => {
+        spyOn(comp.onActiveChange, 'emit');
+
+        comp.showNext();
+        expect(comp.onActiveChange.emit).toHaveBeenCalled();
+    });
+
+    it('should trigger change event on show previous', () => {
+        spyOn(comp.onActiveChange, 'emit');
+        comp.open(1);
+        comp.loading = false;
+
+        comp.showPrev();
+        expect(comp.onActiveChange.emit).toHaveBeenCalled();
+    });
+
+    it('should emit change events during autoplay', (done) => {
+        spyOn(comp.onActiveChange, 'emit');
+
+        comp.autoPlay = true;
+        comp.autoPlayInterval = 1;
+        comp.autoPlayPauseOnHover = true;
+        comp.open(0);
+        comp.loading = false;
+
+        image.dispatchEvent(new Event('mouseenter'));
+        image.dispatchEvent(new Event('mouseleave'));
+
+        setTimeout(() => {
+            fixture.detectChanges();
+            expect(comp.onActiveChange.emit).toHaveBeenCalledTimes(2);
+            done();
+        }, 1000);
+    });
+
     // it('should close on escape', (done) => {
     //     comp.closeOnEsc = true;
     //     fixture.detectChanges();
